@@ -2,31 +2,26 @@
 #include <math.h>
 
 int V[5] = {0,0,0,0,0};
-
-int quadrado(int n){
-    int aux = sqrt(n);
-    if(pow(aux,2) == n){
-        V[3] = aux;
-        aux-=1;
-        printf("%d %d %d %d \n", V[1], V[2], V[3], V[4]);
-    }
-    for(int i=1; i<=4; i++){
-        if(V[1] + V[2] + V[3] + V[4] <= n){
-                V[5-i]=aux;
-            if()
-        }else{
-            if(pow(aux,2) + pow(aux-i,2) < n){
-
+int i;
+int np=0;
+void Quadrado(int n){
+    for(i=1; i<=4; i++){
+        if(pow(V[1],2) + pow(V[2],2) + pow(V[3],2) + pow(V[4],2) < n){
+            np+=1;
+            V[np]=i;
+            if(pow(V[1],2) + pow(V[2],2) + pow(V[3],2) + pow(V[4],2) == n){
+            	printf("%d %d %d %d \n", V[4], V[3], V[2], V[1]);
+			}else{
+            	Quadrado(n);
             }
+            V[np]=0;
+            np-=1;
         }
     }
-
-    return V;
 }
 
 void main(){
     int n;
     scanf("%d", &n);
-    printf("%d", quadrado(n));
-
+    Quadrado(n);
 }
